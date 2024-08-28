@@ -37,11 +37,25 @@ def about(request):
 
 
 def addpage(request):
-    return HttpResponse('Add the post')
+    data = {
+        'title': 'Add the post'
+    }
+    return render(request, 'crypto/add_post.html', context=data)
 
 
 def contact(request):
-    return HttpResponse('Contact')
+    data = {
+        'title': 'Contact'
+    }
+    return render(request, 'crypto/contact.html', context=data)
+
+
+def login(request):
+    return HttpResponse('Authorisation')
+
+
+def logout(request):
+    return HttpResponse('Goodbye')
 
 
 def page_not_found(request, exception):

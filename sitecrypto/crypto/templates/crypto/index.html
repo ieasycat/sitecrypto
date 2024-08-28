@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} Main page {% endblock %}
+{% block title %} {{ title }} {% endblock %}
 
 {% block content %}
 <div class="container-fluid pb-3">
@@ -7,6 +7,9 @@
         {% for p in posts %}
           <h2 class="text-left">{{ p.title }}</h2>
           <h4>{{ p.content }}</h4>
+        <a href="{% url 'post' p.id %}">
+            <button type="button" class="btn btn-light">Read</button>
+        </a>
           {% if not forloop.last %}
           <hr>
           {% endif %}
