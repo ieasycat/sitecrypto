@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} Main page {% endblock %}
+
+{% block content %}
+<div class="container-fluid pb-3">
+    <div class="col p-4 d-flex flex-column position-static">
+        {% for p in posts %}
+          <h2 class="text-left">{{ p.title }}</h2>
+          <h4>{{ p.content }}</h4>
+          {% if not forloop.last %}
+          <hr>
+          {% endif %}
+          {% endfor %}
+    </div>
+</div>
+{% endblock %}

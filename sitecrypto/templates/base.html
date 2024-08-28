@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static 'crypto/font/btc.svg' %}" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible">
+
+    <title>{% block title %} {% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'crypto/css/bootstrap.min.css' %}">
+<!--    <link rel="stylesheet" href="{% static 'crypto/css/main.css' %}">-->
+
+    {% block css %} {% endblock %}
+
+</head>
+<body>
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <img src="{% static 'crypto/font/btc.svg' %}" class="bi bi-cloud-minus" width="40" height="32">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Main page</a></li>
+            <li><a href="{% url 'add_page' %}" methods="get" class="nav-link px-2 link-dark">Add an article</a></li>
+            <li><a href="{% url 'about' %}" methods="get" class="nav-link px-2 link-dark">About the site</a></li>
+            <li><a href="{% url 'contact' %}" methods="get" class="nav-link px-2 link-dark">Contact</a></li>
+        </ul>
+    </div>
+    <hr>
+
+{% block content %} {% endblock %}
+
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="{% static 'crypto/js/bootstrap.bundle.min.js' %}"></script>
+
+{% block script %} {% endblock %}
+
+</body>
+</html>

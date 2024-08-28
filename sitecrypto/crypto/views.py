@@ -44,9 +44,5 @@ def contact(request):
     return HttpResponse('Contact')
 
 
-def login(request):
-    return HttpResponse('Authorisation')
-
-
 def page_not_found(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
