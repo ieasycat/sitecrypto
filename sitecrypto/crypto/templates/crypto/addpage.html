@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+
+    <div class="form-error">{{ form.non_field_errors }}</div>
+
+    <div class="mb-3 was-validated">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control is-invalid" id="title" name="title" required>
+        <div class="form-error text-danger">
+            {{ form.title.errors.as_text }}
+        </div>
+    </div>
+    <div class="mb-3 was-validated">
+        <label for="slug" class="form-label">URL</label>
+        <input type="text" class="form-control is-invalid" id="slug" name="slug" required>
+        <div class="form-error text-danger">
+            {{ form.slug.errors.as_text }}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea class="form-control" id="content" rows="3" name="content"></textarea>
+    </div>
+    <div class="col-md-3">
+        <label for="validationServer04" class="form-label">Status</label>
+        <select name="is_published" class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+            <option value="0">Draft</option>
+            <option selected value="1">Published</option>
+        </select>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-light">Add</button>
+</form>
+{% endblock %}

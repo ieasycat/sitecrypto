@@ -1,5 +1,33 @@
 {% extends 'base.html' %}
+
+{% load static %}
+
 {% block title %} {{ title }} {% endblock %}
 
 {% block content %}
+<div class="p-4 mb-3 bg-light rounded d-flex flex-column align-items-center">
+    <h4 class="text-center mb-3">Contacts:</h4>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column me-4">
+            <p class="mb-0">
+                <img src="{% static 'crypto/font/github-brands-solid.svg' %}" class="bi bi-cloud-minus" width="40" height="32">
+                <a target="_blank" class="link-dark" href="https://github.com/ieasycat">GitHub</a>
+            </p>
+            <p class="mb-0">
+                <img src="{% static 'crypto/font/linkedin-brands-solid.svg' %}" class="bi bi-cloud-minus" width="40" height="32">
+                <a target="_blank" class="link-dark" href="https://www.linkedin.com/in/anton-klimenka-b1b992176/">LinkedIn</a>
+            </p>
+        </div>
+        <div class="d-flex flex-column ms-4">
+            <p class="mb-0">
+                <img src="{% static 'crypto/font/telegram.svg' %}" class="bi bi-cloud-minus" width="40" height="32">
+                <a target="_blank" class="link-dark" href="https://t.me/hallophi">Telegram</a>
+            </p>
+            <p class="mb-0">
+                <img src="{% static 'crypto/font/envelope.svg' %}" class="bi bi-cloud-minus" width="40" height="32">
+                <a target="_blank" class="link-dark" href="mailto:iantonklimenka@gmail.com">Mail</a>
+            </p>
+        </div>
+    </div>
+</div>
 {% endblock %}

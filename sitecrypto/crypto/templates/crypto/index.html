@@ -2,18 +2,61 @@
 {% block title %} {{ title }} {% endblock %}
 
 {% block content %}
-<div class="container-fluid pb-3">
-    <div class="col p-4 d-flex flex-column position-static">
-        {% for p in posts %}
-          <h2 class="text-left">{{ p.title }}</h2>
-          <h4>{{ p.content }}</h4>
-        <a href="{% url 'post' p.id %}">
-            <button type="button" class="btn btn-light">Read</button>
-        </a>
-          {% if not forloop.last %}
-          <hr>
-          {% endif %}
-          {% endfor %}
+    {% for p in posts %}
+        <div class="d-flex justify-content-between">
+            <div class="d-flex flex-column me-4">
+                <h3 class="text-left">{{ p.title.title }}</h3>
+            </div>
+            <div class="d-flex flex-column ms-4">
+                <p>Date of publication: {{ p.time_update.date }}</p>
+            </div>
+        </div>
+        <h5>{{ p.content|linebreaks|truncatewords:20 }}</h5>
+
+        <div class="d-flex justify-content-between">
+            <!-- Left -->
+            <a href="{{ p.get_absolute_url }}" class="btn btn-light me-auto">Read</a>
+            <!-- Right -->
+            {% if user.is_authenticated %}
+            <div>
+                <a href="{% url 'edit_page' p.slug %}" class="btn btn-light">Edit</a>
+                <a href="{% url 'delete_page' p.slug %}" class="btn btn-light">Delete</a>
+            </div>
+            {% endif %}
+        </div>
+        {% if not forloop.last %}
+            <hr>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block navigation %}
+{% if page_obj.has_other_pages %}
+    <div class="position-fixed bottom-0 start-50 translate-middle-x w-100 bg-white py-2 d-flex justify-content-center">
+        <nav class="list-page">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                    </li>
+                {% endif %}
+                {% for p in paginator.page_range %}
+                {% if page_obj.number == p %}
+                    <li class="page-item disabled">
+                      <a class="page-link" aria-disabled="true">{{ p }}</a>
+                    </li>
+                {% elif page_obj.number|add:2 >= p and p >= page_obj.number|add:-2 %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                    </li>
+                {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
-</div>
+{% endif %}
 {% endblock %}

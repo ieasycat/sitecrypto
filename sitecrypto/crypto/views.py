@@ -1,61 +1,149 @@
-from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseNotFound
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
-menu = [
-    {'title': 'About the site', 'url_name': 'about'},
-    {'title': 'Add an article', 'url_name': 'add_page'},
-    {'title': 'Contact', 'url_name': 'contact'},
-    {'title': 'LogIn', 'url_name': 'login'},
-]
-
-data_db = [
-    {'id': 1, 'title': 'Bitcoin', 'content': 'Info about the Bitcoin', 'is_published': True},
-    {'id': 2, 'title': 'Ethereum', 'content': 'Info about the Ethereum', 'is_published': True},
-    {'id': 3, 'title': 'TON', 'content': 'Info about the TON', 'is_published': True},
-]
+from .forms import AddPostForm
+from .models import Crypto
+from .utils import FormMixin
 
 
-def index(request):
-    data = {
-        'title': 'Main page',
-        'menu': menu,
-        'posts': data_db
-    }
-    return render(request, 'crypto/index.html', context=data)
+class CryptoHome(ListView):
+    """
+    Displays a list of published cryptocurrencies.
+
+    This view retrieves all cryptocurrencies from the database that are marked as
+    published and displays them with pagination.
+    """
+
+    template_name = 'crypto/index.html'
+    context_object_name = 'posts'
+    extra_context = {'title': 'Main page'}
+    paginate_by = 5
+
+    def get_queryset(self):
+        # Get all published cryptocurrencies
+        return Crypto.published.all()
 
 
-def show_post(request, post_id):
-    return HttpResponse(f'Show the post with ID = {post_id}')
+class ShowPost(DetailView):
+    """
+    Displays the published cryptocurrency.
+
+    This view extracts the cryptocurrency from the database by the slug field, which is marked as
+    published, and displays it.
+    """
+
+    model = Crypto
+    template_name = 'crypto/post.html'
+    slug_url_kwarg = 'post_slug'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        # Add the title of the page in the form of the selected cryptocurrency
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['post'].title
+        return context
+
+    def get_object(self, queryset=None):
+        # Get access to the published cryptocurrency or get a 404 error
+        return get_object_or_404(Crypto.published, slug=self.kwargs[self.slug_url_kwarg])
 
 
-def about(request):
-    data = {
-        'title': 'About the site',
-        'menu': menu,
-    }
-    return render(request, 'crypto/about.html', context=data)
+class AddPage(FormMixin, LoginRequiredMixin, CreateView):
+    """
+    Creates a new cryptocurrency.
+
+    This view allows authorized users to add a new cryptocurrency to the database.
+    Access is restricted to logged-in users.
+
+    Permissions:
+        - Access is restricted to authenticated users only.
+
+    Notes:
+        - The form's title will be converted to lowercase by FormMixin.
+    """
+
+    form_class = AddPostForm
+    template_name = 'crypto/addpage.html'
+    success_url = reverse_lazy('home')
+    extra_context = {'title': 'Add the post'}
 
 
-def addpage(request):
-    data = {
-        'title': 'Add the post'
-    }
-    return render(request, 'crypto/add_post.html', context=data)
+class UpdatePage(FormMixin, LoginRequiredMixin, UpdateView):
+    """
+    Updates the cryptocurrency.
+
+    This view allows authorized users to update the cryptocurrency to the database.
+    Access is restricted to logged-in users.
+
+    Permissions:
+        - Access is restricted to authenticated users only.
+
+    Notes:
+        - The form's title will be converted to lowercase by FormMixin.
+    """
+
+    model = Crypto
+    fields = ['title', 'content', 'is_published']
+    template_name = 'crypto/editpage.html'
+    success_url = reverse_lazy('home')
+    extra_context = {'title': 'Editing the post'}
 
 
-def contact(request):
-    data = {
-        'title': 'Contact'
-    }
-    return render(request, 'crypto/contact.html', context=data)
+class DeletePage(LoginRequiredMixin, DeleteView):
+    """
+    Deletes the cryptocurrency.
+
+    This view allows authorized users to delete cryptocurrency from the database.
+    Access is restricted to registered users.
+
+    Permissions:
+        - Access is restricted only to authenticated users.
+    """
+
+    model = Crypto
+    success_url = reverse_lazy('home')
+    template_name = 'crypto/deletepage.html'
+    extra_context = {'title': 'Deleting the post'}
 
 
-def login(request):
-    return HttpResponse('Authorisation')
+class AboutPage(TemplateView):
+    """
+    Displays information about the site.
+    """
+
+    template_name = 'crypto/about.html'
+    extra_context = {'title': 'About the site'}
 
 
-def logout(request):
-    return HttpResponse('Goodbye')
+class ContactPage(TemplateView):
+    """
+    Displays the contacts of the website developer.
+    """
+
+    template_name = 'crypto/contact.html'
+    extra_context = {'title': 'Contact'}
+
+
+class SearchPost(DetailView):
+    """
+    Searches the cryptocurrency.
+
+    This view extracts the cryptocurrency from the database by the title field, which is marked as
+    published, and displays it.
+    """
+
+    model = Crypto
+    template_name = 'crypto/post.html'
+    context_object_name = 'post'
+
+    def get_object(self, queryset=None):
+        # The form's title will be converted to lowercase and get access to the published cryptocurrency
+        # or get a 404 error message
+        title = self.request.GET['search'].lower()
+        return get_object_or_404(Crypto.published, title=title)
 
 
 def page_not_found(request, exception):

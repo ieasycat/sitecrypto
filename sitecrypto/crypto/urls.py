@@ -2,11 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='home'),
-    path('about/', views.about, name='about'),
-    path('addpage/', views.addpage, name='add_page'),
-    path('contact/', views.contact, name='contact'),
-    path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
-    path('post/<int:post_id>/', views.show_post, name='post'),
+    path('', views.CryptoHome.as_view(), name='home'),
+    path('post/<slug:post_slug>/', views.ShowPost.as_view(), name='post'),
+    path('addpage/', views.AddPage.as_view(), name='add_page'),
+    path('edit/<slug:slug>', views.UpdatePage.as_view(), name='edit_page'),
+    path('delete/<slug:slug>', views.DeletePage.as_view(), name='delete_page'),
+    path('about/', views.AboutPage.as_view(), name='about'),
+    path('contact/', views.ContactPage.as_view(), name='contact'),
+    path('search/', views.SearchPost.as_view(), name='search_post'),
 ]

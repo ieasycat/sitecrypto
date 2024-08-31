@@ -22,14 +22,34 @@
         <img src="{% static 'crypto/font/btc.svg' %}" class="bi bi-cloud-minus" width="40" height="32">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Main page</a></li>
+            {% if user.is_authenticated %}
             <li><a href="{% url 'add_page' %}" methods="get" class="nav-link px-2 link-dark">Add an article</a></li>
+            {% endif %}
             <li><a href="{% url 'about' %}" methods="get" class="nav-link px-2 link-dark">About the site</a></li>
             <li><a href="{% url 'contact' %}" methods="get" class="nav-link px-2 link-dark">Contact</a></li>
         </ul>
+        <div class="nav">
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 nav-link px-2 link-dark" action="{% url 'search_post' %}">
+                <input type="search" class="form-control" placeholder="Title of crypto" aria-label="Search" name="search">
+            </form>
+            {% if user.is_authenticated %}
+            <p class="nav-link px-2 link-dark">{{ user.username }}</p>
+            <a href="{% url 'users:logout' %}" methods="get" class="nav-link px-2 link-dark">Logout</a>
+            {% else %}
+            <a href="{% url 'users:login' %}" methods="get" class="nav-link px-2 link-dark">Login</a>
+            {% endif %}
+        </div>
     </div>
     <hr>
 
-{% block content %} {% endblock %}
+
+<div class="container-fluid pb-5 ">
+    <div class="col p-4 d-flex flex-column position-static">
+        {% block content %} {% endblock %}
+    </div>
+</div>
+
+{% block navigation %} {% endblock %}
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="{% static 'crypto/js/bootstrap.bundle.min.js' %}"></script>
