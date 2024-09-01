@@ -2,6 +2,6 @@
     {% if network.id == network_selected %}
         <li class="selected">{{ network.title }}</li>
     {% else %}
-        <li><a href="{{ network.get_absolute_url }}">{{ network.title }}</a></li>
+        <li><a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ network.get_absolute_url }}">{{ network.title }}</a></li>
     {% endif %}
 {% endfor %}

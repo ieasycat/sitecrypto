@@ -48,22 +48,16 @@
     <div class="d-grid gap-3" style="grid-template-columns: 0fr 5fr;">
         <div class="bg-color col mx-auto p-4 d-flex flex-column position-static">
             <h3 class="text-center">Networks:</h3>
-            <ul class=" col-4 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <ol class="list-unstyled mb-0">
                 {% if network_selected == 0 %}
 		            <li class="selected">All networks</li>
 		        {% else %}
-		            <li><a href="{% url 'home' %}">All networks</a></li>
+		            <li><a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'home' %}">All networks</a></li>
 		        {% endif %}
 
 		        {% show_networks network_selected %}
 
-<!--                {% for p in posts.networks.all %}-->
-<!--                    <li>{{ n.title }}</li>-->
-<!--                {% endfor %}-->
-<!--                <li><a href="#" class="nav-link link-dark">ERC20</a></li>-->
-<!--                <li><a href="#" methods="get" class="nav-link link-dark">TON</a></li>-->
-<!--                <li><a href="#" methods="get" class="nav-link link-dark">SOL</a></li>-->
-            </ul>
+            </ol>
         </div>
     <div class="bg-color col p-4 d-flex flex-column position-static">
         {% block content %} {% endblock %}
