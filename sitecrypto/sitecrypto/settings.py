@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crypto.apps.CryptoConfig',
     'debug_toolbar',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
