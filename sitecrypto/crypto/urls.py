@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.CryptoHome.as_view(), name='home'),
+    path('network/<slug:net_slug>', views.CryptoNetwork.as_view(), name='network'),
     path('post/<slug:post_slug>/', views.ShowPost.as_view(), name='post'),
     path('addpage/', views.AddPage.as_view(), name='add_page'),
     path('edit/<slug:slug>', views.UpdatePage.as_view(), name='edit_page'),

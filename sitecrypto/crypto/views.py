@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
 from .forms import AddPostForm
-from .models import Crypto
+from .models import Crypto, Network
 from .utils import FormMixin
 
 
@@ -19,12 +19,36 @@ class CryptoHome(ListView):
 
     template_name = 'crypto/index.html'
     context_object_name = 'posts'
-    extra_context = {'title': 'Main page'}
+    extra_context = {'title': 'Main page', 'network_selected': 0}
     paginate_by = 5
 
     def get_queryset(self):
-        # Get all published cryptocurrencies
-        return Crypto.published.all()
+        # Get access to all published cryptocurrencies using the greedy data download
+        return Crypto.published.all().prefetch_related('networks')
+
+
+class CryptoNetwork(ListView):
+    """
+    Displays a paginated list of published cryptocurrencies filtered by the selected network.
+
+    This view retrieves all published cryptocurrencies from the database, filtered by the
+    network specified via the `slug` parameter in the URL.
+    """
+
+    template_name = 'crypto/index.html'
+    context_object_name = 'posts'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        # Add the page title in the form of the selected network, and also transmit the selected network
+        context = super().get_context_data(**kwargs)
+        networks = Network.objects.get(slug=self.kwargs['net_slug'])
+        context['title'], context['network_selected'] = f'Network: {networks}', networks.pk
+        return context
+
+    def get_queryset(self):
+        # Get access to all published cryptocurrencies using network field filtering and greedy data download
+        return Crypto.published.filter(networks__slug=self.kwargs['net_slug']).prefetch_related('networks')
 
 
 class ShowPost(DetailView):
