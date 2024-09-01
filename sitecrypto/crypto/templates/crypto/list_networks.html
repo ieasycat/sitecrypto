@@ -1,0 +1,7 @@
+{% for network in networks %}
+    {% if network.id == network_selected %}
+        <li class="selected">{{ network.title }}</li>
+    {% else %}
+        <li><a href="{{ network.get_absolute_url }}">{{ network.title }}</a></li>
+    {% endif %}
+{% endfor %}
