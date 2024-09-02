@@ -15,10 +15,9 @@ class Command(BaseCommand):
             data = json.load(file)
 
             for item in data:
-                networks = Network.objects.filter(id__in=item['networks'])
+                networks = Network.objects.filter(slug__in=item['networks'])
                 crypto, created = Crypto.objects.update_or_create(
                     title=item['title'],
-                    slug=item['slug'],
                     full_name=item['full_name'],
                     defaults={
                         'content': item['content'],

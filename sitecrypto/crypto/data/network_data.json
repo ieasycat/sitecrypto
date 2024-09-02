@@ -1,68 +1,46 @@
 [
   {
-    "id": 1,
     "title": "Arbitrum One",
-    "full_name": "Arbitrum One",
-    "slug": "arbitrum-one"
+    "full_name": "Arbitrum One"
   },
   {
-    "id": 2,
     "title": "BEP-2",
-    "full_name": "BNB Beacon Chain",
-    "slug": "bep-2"
+    "full_name": "BNB Beacon Chain"
   },
   {
-    "id": 3,
     "title": "BEP-20",
-    "full_name": "BNB Smart Chain",
-    "slug": "bep-20"
+    "full_name": "BNB Smart Chain"
   },
   {
-    "id": 4,
     "title": "Bitcoin",
-    "full_name": "Bitcoin",
-    "slug": "bitcoin"
+    "full_name": "Bitcoin"
   },
   {
-    "id": 5,
     "title": "ERC-20",
-    "full_name": "Ethereum",
-    "slug": "erc-20"
+    "full_name": "Ethereum"
   },
   {
-    "id": 6,
     "title": "Optimism",
-    "full_name": "Optimism",
-    "slug": "optimism"
+    "full_name": "Optimism"
   },
   {
-    "id": 7,
     "title": "Polkadot",
-    "full_name": "Polkadot",
-    "slug": "polkadot"
+    "full_name": "Polkadot"
   },
   {
-    "id": 8,
     "title": "Polygon",
-    "full_name": "Polygon",
-    "slug": "polygon"
+    "full_name": "Polygon"
   },
   {
-    "id": 9,
     "title": "Solana",
-    "full_name": "Solana",
-    "slug": "solana"
+    "full_name": "Solana"
   },
   {
-    "id": 10,
     "title": "Toncoin",
-    "full_name": "Toncoin",
-    "slug": "toncoin"
+    "full_name": "Toncoin"
   },
   {
-    "id": 11,
     "title": "TRC-20",
-    "full_name": "Tron",
-    "slug": "trc-20"
+    "full_name": "Tron"
   }
 ]

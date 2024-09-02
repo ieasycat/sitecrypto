@@ -16,11 +16,10 @@ class Command(BaseCommand):
 
             for item in data:
                 network, created = Network.objects.update_or_create(
-                    id=item['id'],
+                    slug=item['title'].lower(),
                     defaults={
                         'title': item['title'],
                         'full_name': item['full_name'],
-                        'slug': item['slug']
                     }
                 )
                 if created:
