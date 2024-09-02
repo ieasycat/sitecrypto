@@ -34,6 +34,7 @@ class CryptoInlaine(admin.TabularInline):
 @admin.register(Network)
 class NetworkAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'full_name')
+    prepopulated_fields = {'slug': ('full_name',)}
     list_display_links = ('id', 'title')
     ordering = ['title', 'full_name']
     list_per_page = 5
