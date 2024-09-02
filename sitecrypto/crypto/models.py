@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 
 
 class PublishedManager(models.Manager):
@@ -22,7 +23,8 @@ class Crypto(models.Model):
         'Network',
         related_name='networks',
     )
-    is_published = models.BooleanField(choices=Status.choices, default=Status.PUBLISHED)
+    is_published = models.BooleanField(choices=tuple(map(lambda x: (bool(x[0]), x[1]), Status.choices)),
+                                       default=Status.PUBLISHED, verbose_name='Status')
 
     objects = models.Manager()
     published = PublishedManager()
@@ -39,6 +41,10 @@ class Crypto(models.Model):
 
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.full_name)
+        super().save(*args, **kwargs)
 
 
 class Network(models.Model):
