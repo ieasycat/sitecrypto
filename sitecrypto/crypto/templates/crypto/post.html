@@ -2,6 +2,8 @@
 {% block title %} {{ title }} {% endblock %}
 
 {% block content %}
-    <h2 class="text-left">{{ post.title.title }}</h2>
-    <h4>{{ post.content }}</h4>
+    <h4 class="text-left">{{ post.title.upper }}</h4>
+    <br><br>
+    <p>The full name of {{ post.title.title }} is {{ post.full_name }}.</p>
+    <p>{{ post.content }}</p>
 {% endblock %}
