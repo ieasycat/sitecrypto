@@ -37,7 +37,6 @@ class CryptoNetwork(ListView):
 
     template_name = 'crypto/index.html'
     context_object_name = 'posts'
-    allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
         # Add the page title in the form of the selected network, and also transmit the selected network
