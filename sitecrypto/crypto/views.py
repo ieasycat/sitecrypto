@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -163,10 +164,11 @@ class SearchPost(DetailView):
     context_object_name = 'post'
 
     def get_object(self, queryset=None):
-        # The form's title will be converted to lowercase and get access to the published cryptocurrency
-        # or get a 404 error message
-        title = self.request.GET['search'].lower()
-        return get_object_or_404(Crypto.published, title=title)
+        # The search query will be converted to lowercase, the title or full_name field will be searched,
+        # and you will get access to the published cryptocurrency or receive a 404 error message
+        data = self.request.GET['search'].lower()
+        print(data)
+        return get_object_or_404(Crypto.published, Q(title=data) | Q(full_name=data.title()))
 
 
 def page_not_found(request, exception):

@@ -32,7 +32,7 @@
         </ul>
         <div class="nav">
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 nav-link px-2 link-dark" action="{% url 'search_post' %}">
-                <input type="search" class="form-control" placeholder="Title of crypto" aria-label="Search" name="search">
+                <input type="search" class="form-control" placeholder="Cryptocurrency Search" aria-label="Search" name="search">
             </form>
             {% if user.is_authenticated %}
             <p class="nav-link px-2 link-dark">{{ user.username }}</p>

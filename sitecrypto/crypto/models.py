@@ -43,6 +43,7 @@ class Crypto(models.Model):
         return reverse('post', kwargs={'post_slug': self.slug})
 
     def save(self, *args, **kwargs):
+        self.title = str(self.title).lower()
         self.slug = slugify(self.full_name)
         super().save(*args, **kwargs)
 
@@ -57,3 +58,8 @@ class Network(models.Model):
 
     def get_absolute_url(self):
         return reverse('network', kwargs={'net_slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        self.title = str(self.title).lower()
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
