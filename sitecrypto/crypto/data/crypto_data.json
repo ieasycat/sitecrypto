@@ -1,0 +1,205 @@
+[
+    {
+        "title": "eth",
+        "full_name": "Ethereum",
+        "slug": "ethereum",
+        "content": "Ethereum was proposed in late 2013 by programmer Vitalik Buterin and development began in early 2014. It is a decentralized, open-source blockchain with smart contract functionality.",
+        "networks": [5, 6, 3, 1]
+    },
+    {
+        "title": "usdt",
+        "full_name": "Tether",
+        "slug": "tether",
+        "content": "Tether (USDT) was launched in 2014 by Brock Pierce, Reeve Collins, and Craig Sellars. It is a stablecoin pegged to the US Dollar, aiming to provide a stable cryptocurrency for trading.",
+        "networks": [5, 11, 3, 8, 10, 9, 8, 6, 1]
+    },
+    {
+        "title": "usdc",
+        "full_name": "USD Coin",
+        "slug": "usd-coin",
+        "content": "USD Coin (USDC) was launched in 2018 by Circle and Coinbase as a stablecoin pegged to the US Dollar. It aims to combine the benefits of cryptocurrencies with the stability of fiat currencies.",
+        "networks": [5, 11, 3, 8, 10, 9, 8, 6, 1]
+    },
+    {
+        "title": "dai",
+        "full_name": "Dai",
+        "slug": "dai",
+        "content": "Dai is a stablecoin launched in 2017 by MakerDAO. It is soft-pegged to the US Dollar and is decentralized, backed by collateral on the Ethereum blockchain.",
+        "networks": [5, 3]
+    },
+    {
+        "title": "uni",
+        "full_name": "Uniswap",
+        "slug": "uniswap",
+        "content": "Uniswap is a decentralized exchange protocol launched in 2018 by Hayden Adams. It allows users to swap tokens directly without the need for an intermediary.",
+        "networks": [5, 3]
+    },
+    {
+        "title": "link",
+        "full_name": "Chainlink",
+        "slug": "chainlink",
+        "content": "Chainlink was launched in 2017 by Sergey Nazarov. It is a decentralized oracle network that enables smart contracts to securely connect to real-world data, APIs, and payment systems.",
+        "networks": [5, 3]
+    },
+    {
+        "title": "sushi",
+        "full_name": "SushiSwap",
+        "slug": "sushiswap",
+        "content": "SushiSwap is a decentralized exchange protocol forked from Uniswap in 2020. It was launched by an anonymous developer known as Chef Nomi to provide more features and reward mechanisms for liquidity providers.",
+        "networks": [5, 3]
+    },
+    {
+        "title": "shib",
+        "full_name": "Shiba Inu",
+        "slug": "shiba-inu",
+        "content": "Shiba Inu (SHIB) was created in 2020 by an anonymous person known as Ryoshi. It is an ERC-20 token inspired by the Shiba Inu dog meme, aiming to be the 'Dogecoin Killer'.",
+        "networks": [5, 3]
+    },
+    {
+        "title": "trx",
+        "full_name": "TRON",
+        "slug": "tron",
+        "content": "TRON (TRX) was founded in 2017 by Justin Sun. It aims to build a decentralized internet and infrastructure for decentralized applications (DApps).",
+        "networks": [11, 3]
+    },
+    {
+        "title": "win",
+        "full_name": "WINkLink",
+        "slug": "winklink",
+        "content": "WINkLink is a decentralized oracle network on the TRON blockchain, launched in 2019. It aims to bring reliable, real-world data to smart contracts.",
+        "networks": [3]
+    },
+    {
+        "title": "btt",
+        "full_name": "BitTorrent",
+        "slug": "bittorrent",
+        "content": "BitTorrent Token (BTT) was launched in 2019 by the TRON Foundation after acquiring BitTorrent. It is designed to improve the file-sharing protocol's decentralization and incentives.",
+        "networks": [11]
+    },
+    {
+        "title": "jst",
+        "full_name": "JUST",
+        "slug": "just",
+        "content": "JUST is a decentralized finance (DeFi) platform on the TRON blockchain, launched in 2020. It aims to provide a suite of products for lending, borrowing, and stablecoin issuance.",
+        "networks": [11, 3]
+    },
+    {
+        "title": "bnb",
+        "full_name": "Binance Coin",
+        "slug": "binance-coin",
+        "content": "Binance Coin (BNB) was launched in 2017 by Binance as a utility token for its cryptocurrency exchange. It powers the BNB Chain ecosystem and offers trading fee discounts.",
+        "networks": [3, 2, 5]
+    },
+    {
+        "title": "busd",
+        "full_name": "Binance USD",
+        "slug": "binance-usd",
+        "content": "Binance USD (BUSD) is a stablecoin launched in 2019 by Binance and Paxos, pegged 1:1 to the US Dollar. It aims to provide stability and transparency in trading and transactions.",
+        "networks": [3, 2, 5, 11, 6, 8]
+    },
+    {
+        "title": "cake",
+        "full_name": "PancakeSwap",
+        "slug": "pancakeswap",
+        "content": "PancakeSwap is a decentralized exchange launched in 2020 on the BNB Smart Chain. It allows users to swap BEP-20 tokens, stake, and participate in yield farming.",
+        "networks": [3, 5, 2]
+    },
+    {
+        "title": "bake",
+        "full_name": "BakeryToken",
+        "slug": "bakerytoken",
+        "content": "BakeryToken (BAKE) is a DeFi platform launched on the BNB Smart Chain in 2020. It offers a suite of financial services, including trading, staking, and liquidity mining.",
+        "networks": [3, 2]
+    },
+    {
+        "title": "btc",
+        "full_name": "Bitcoin",
+        "slug": "bitcoin",
+        "content": "Bitcoin was created in 2008 by an anonymous person or group known as Satoshi Nakamoto. It was the first cryptocurrency, designed as a decentralized digital currency without a central authority.",
+        "networks": [4, 3, 2, 5]
+    },
+    {
+        "title": "sol",
+        "full_name": "Solana",
+        "slug": "solana",
+        "content": "Solana was founded in 2017 by Anatoly Yakovenko. It is a high-performance blockchain designed to provide fast and secure decentralized applications and crypto-currencies.",
+        "networks": [9, 3]
+    },
+    {
+        "title": "arb",
+        "full_name": "Arbitrum",
+        "slug": "arbitrum",
+        "content": "Arbitrum is a Layer 2 scaling solution for Ethereum, developed by Offchain Labs in 2021. It aims to reduce transaction fees and increase speed while maintaining security.",
+        "networks": [5, 1]
+    },
+    {
+        "title": "ray",
+        "full_name": "Raydium",
+        "slug": "raydium",
+        "content": "Raydium is an automated market maker (AMM) and liquidity provider built on the Solana blockchain, launched in 2021. It integrates with the Serum DEX to provide fast and low-cost trading.",
+        "networks": [9]
+    },
+    {
+        "title": "ftt",
+        "full_name": "FTX Token",
+        "slug": "ftx-token",
+        "content": "FTX Token (FTT) was launched in 2019 by the FTX cryptocurrency exchange. It serves as the platform's native token, providing utility and trading fee discounts.",
+        "networks": [5]
+    },
+    {
+        "title": "matic",
+        "full_name": "Polygon",
+        "slug": "polygon",
+        "content": "Polygon (previously Matic Network) was launched in 2017. It aims to provide scalable, secure, and instant transactions using sidechains on the Ethereum blockchain.",
+        "networks": [8, 3, 2, 5]
+    },
+    {
+        "title": "ton",
+        "full_name": "Toncoin",
+        "slug": "toncoin",
+        "content": "Toncoin is the native cryptocurrency of The Open Network, initially developed by Telegram and later continued by the open-source community. It aims to provide fast and scalable blockchain solutions.",
+        "networks": [10]
+    },
+    {
+        "title": "pepe",
+        "full_name": "PepeCoin",
+        "slug": "pepecoin",
+        "content": "PepeCoin is a meme cryptocurrency inspired by the internet meme character Pepe the Frog. It is community-driven and often seen as a satirical token.",
+        "networks": [5]
+    },
+    {
+        "title": "xrp",
+        "full_name": "Ripple",
+        "slug": "ripple",
+        "content": "Ripple (XRP) was launched in 2012 by Ripple Labs. It is a real-time gross settlement system, currency exchange, and remittance network.",
+        "networks": [2, 3, 5]
+    },
+    {
+        "title": "avax",
+        "full_name": "Avalanche",
+        "slug": "avalanche",
+        "content": "Avalanche was launched in 2020 by Ava Labs. It is a highly scalable blockchain platform that supports smart contracts, focusing on low fees and eco-friendly infrastructure.",
+        "networks": [3]
+    },
+    {
+        "title": "doge",
+        "full_name": "Dogecoin",
+        "slug": "dogecoin",
+        "content": "Dogecoin was created in 2013 by Billy Markus and Jackson Palmer as a joke based on the 'Doge' meme. It has since grown into a community-driven cryptocurrency.",
+        "networks": [2, 3]
+    },
+    {
+        "title": "wif",
+        "full_name": "WiFi Coin",
+        "slug": "wifi-coin",
+        "content": "WiFi Coin is a digital currency designed for transactions within wireless networks. It provides incentives for users who share their WiFi connections.",
+        "networks": [9]
+    },
+    {
+        "title": "dogs",
+        "full_name": "Dogs of Elon",
+        "slug": "dogs-of-elon",
+        "content": "Dogs of Elon is a meme cryptocurrency inspired by Dogecoin and Elon Musk. It aims to build a community around fun, engagement, and DeFi features.",
+        "networks": [10]
+    }
+]
