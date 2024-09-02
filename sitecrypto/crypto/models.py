@@ -12,8 +12,9 @@ class Crypto(models.Model):
         DRAFT = 0, 'Draft'
         PUBLISHED = 1, 'Published'
 
-    title = models.CharField(max_length=50, unique=True, db_index=True)
-    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+    title = models.CharField(max_length=50, db_index=True)
+    full_name = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(max_length=255, db_index=True)
     content = models.TextField(blank=True)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
@@ -27,6 +28,7 @@ class Crypto(models.Model):
     published = PublishedManager()
 
     class Meta:
+        unique_together = ('title', 'slug', 'full_name')
         ordering = ['-time_create']
         indexes = [
             models.Index(fields=['-time_create'])
