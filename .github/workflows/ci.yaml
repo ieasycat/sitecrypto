@@ -44,12 +44,14 @@ jobs:
         pre-commit run --all-files  # Running a pre-commit for all files    
 
     - name: Run migrations
+      working-directory: ./sitecrypto
       env:
         DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
       run: |
         python manage.py migrate  # Application
 
     - name: Run tests with coverage
+      working-directory: ./sitecrypto
       env:
         DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
       run: |
