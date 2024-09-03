@@ -6,12 +6,20 @@
     {% csrf_token %}
 
     <div class="form-error">{{ form.non_field_errors }}</div>
+    <div class="form-error">{{ form.errors }}</div>
 
     <div class="mb-3 was-validated">
         <label for="title" class="form-label">Title</label>
         <input value='{{ form.title.value.title }}' type="text" class="form-control is-invalid" id="title" name="title" required>
         <div class="form-error text-danger">
             {{ form.title.errors.as_text }}
+        </div>
+    </div>
+    <div class="mb-3 was-validated">
+        <label for="title" class="form-label">Full Name</label>
+        <input value='{{ form.full_name.value.upper }}' type="text" class="form-control is-invalid" id="full_name" name="full_name" required>
+        <div class="form-error text-danger">
+            {{ form.ful_name.errors.as_text }}
         </div>
     </div>
     <div class="mb-3">
@@ -21,15 +29,29 @@
             {{ form.content.errors.as_text }}
         </div>
     </div>
+
+    <p>Networks: </p>
+    {%  for n in form.fields.networks.queryset %}
+    <div class="form-check form-switch">
+        <input id="id_{{ p.pk }}" value="{{ n.pk }}" class="form-check-input" type="checkbox" role="switch" name="networks" {% if n in form.instance.networks.all %} checked {% endif %}>
+        <label for="id_{{ p.pk }}" class="form-check-label">{{ n.title }}</label>
+        <div class="form-error text-danger">
+            {{ form.networks.errors.as_text }}
+        </div>
+    </div>
+    {% endfor %}
+
+    <br>
+
     <div class="col-md-3">
         <label for="validationServer04" class="form-label">Status</label>
         <select name="is_published" class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
             {% if form.is_published.value %}
-            <option value="0">Draft</option>
-            <option selected value="1">Published</option>
+            <option value="False">Draft</option>
+            <option selected value="True">Published</option>
             {% else %}
-            <option selected value="0">Draft</option>
-            <option value="1">Published</option>
+            <option selected value="False">Draft</option>
+            <option value="True">Published</option>
             {% endif %}
         </select>
     </div>

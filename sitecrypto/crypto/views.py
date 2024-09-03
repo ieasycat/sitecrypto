@@ -7,7 +7,6 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from .forms import AddPostForm
 from .models import Crypto, Network
-from .utils import FormMixin
 
 
 class CryptoHome(ListView):
@@ -42,7 +41,7 @@ class CryptoNetwork(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         # Add the page title in the form of the selected network, and also transmit the selected network
         context = super().get_context_data(**kwargs)
-        networks = Network.objects.get(slug=self.kwargs['net_slug'])
+        networks = get_object_or_404(Network, slug=self.kwargs['net_slug'])
         context['title'], context['network_selected'] = f'Network: {networks}', networks.pk
         return context
 
@@ -75,7 +74,7 @@ class ShowPost(DetailView):
         return get_object_or_404(Crypto.published, slug=self.kwargs[self.slug_url_kwarg])
 
 
-class AddPage(FormMixin, LoginRequiredMixin, CreateView):
+class AddPage(LoginRequiredMixin, CreateView):
     """
     Creates a new cryptocurrency.
 
@@ -89,13 +88,14 @@ class AddPage(FormMixin, LoginRequiredMixin, CreateView):
         - The form's title will be converted to lowercase by FormMixin.
     """
 
+    model = Crypto
     form_class = AddPostForm
     template_name = 'crypto/addpage.html'
     success_url = reverse_lazy('home')
     extra_context = {'title': 'Add the post'}
 
 
-class UpdatePage(FormMixin, LoginRequiredMixin, UpdateView):
+class UpdatePage(LoginRequiredMixin, UpdateView):
     """
     Updates the cryptocurrency.
 
@@ -110,7 +110,7 @@ class UpdatePage(FormMixin, LoginRequiredMixin, UpdateView):
     """
 
     model = Crypto
-    fields = ['title', 'content', 'is_published']
+    form_class = AddPostForm
     template_name = 'crypto/editpage.html'
     success_url = reverse_lazy('home')
     extra_context = {'title': 'Editing the post'}
@@ -167,7 +167,6 @@ class SearchPost(DetailView):
         # The search query will be converted to lowercase, the title or full_name field will be searched,
         # and you will get access to the published cryptocurrency or receive a 404 error message
         data = self.request.GET['search'].lower()
-        print(data)
         return get_object_or_404(Crypto.published, Q(title=data) | Q(full_name=data.title()))
 
 
