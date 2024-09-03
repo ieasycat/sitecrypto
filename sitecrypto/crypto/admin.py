@@ -40,4 +40,3 @@ class NetworkAdmin(admin.ModelAdmin):
     list_per_page = 5
     search_fields = ['titile', 'full_name']
     inlines = [CryptoInlaine]
-

@@ -9,4 +9,3 @@ register = template.Library()
 def show_networks(network_selected=0):
     networks = Network.objects.all()
     return {'networks': networks, 'network_selected': network_selected}
-
