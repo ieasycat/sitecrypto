@@ -2,9 +2,9 @@ name: Django CI with Coverage
 
 on:
   push:
-    branches: [main]  # It starts when you push to the main branch
+    branches: [master]  # It starts when you push to the main branch
   pull_request:
-    branches: [main]  # It is started when creating a pull request in the main
+    branches: [master]  # It is started when creating a pull request in the main
 
 jobs:
   test:
