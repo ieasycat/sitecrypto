@@ -12,11 +12,11 @@ jobs:
 
     services:
       postgres:  # Configuring the PostgreSQL database
-        image: postgres:13
+        image: postgres
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: test_db
+          POSTGRES_DB: github-actions
         ports:
           - 5432:5432
         options: >-
@@ -45,17 +45,11 @@ jobs:
 
     - name: Run migrations
       working-directory: ./sitecrypto
-      env:
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
-      run: |
-        python manage.py migrate  # Application
+      run: python manage.py migrate  # Application
 
     - name: Run tests with coverage
       working-directory: ./sitecrypto
-      env:
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
-      run: |
-        coverage run manage.py test  # Start tests with coverage
+      run: coverage run manage.py test  # Start tests with coverage
 
     - name: Generate coverage report
       run: |
