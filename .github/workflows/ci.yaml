@@ -52,6 +52,5 @@ jobs:
       run: coverage run manage.py test  # Start tests with coverage
 
     - name: Generate coverage report
-      run: |
-        coverage report  # Show a summary report in the console
-        coverage xml -o coverage.xml  # Generating an XML report for subsequent analysis
+      working-directory: ./sitecrypto
+      run: coverage xml -o coverage.xml  # Generating an XML report for subsequent analysis
