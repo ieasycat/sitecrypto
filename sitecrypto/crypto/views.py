@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
@@ -168,7 +167,3 @@ class SearchPost(DetailView):
         # and you will get access to the published cryptocurrency or receive a 404 error message
         data = self.request.GET['search'].lower()
         return get_object_or_404(Crypto.published, Q(title=data) | Q(full_name=data.title()))
-
-
-def page_not_found(request, exception):
-    return HttpResponseNotFound('<h1>Страница не найдена</h1>')
