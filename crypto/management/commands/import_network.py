@@ -16,7 +16,7 @@ class Command(BaseCommand):
 
             for item in data:
                 network, created = Network.objects.update_or_create(
-                    slug=item['title'].lower(),
+                    slug=item['title'],
                     defaults={
                         'title': item['title'],
                         'full_name': item['full_name'],
