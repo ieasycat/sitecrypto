@@ -32,7 +32,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.8'  # Version Python
+        python-version: '3.12'  # Version Python
 
     - name: Install dependencies
       run: |
@@ -44,14 +44,11 @@ jobs:
         pre-commit run --all-files  # Running a pre-commit for all files    
 
     - name: Run migrations
-      working-directory: ./sitecrypto
       run: python manage.py migrate  # Application
 
     - name: Run tests with coverage
-      working-directory: ./sitecrypto
       run: coverage run manage.py test  # Start tests with coverage
 
     - name: Generate coverage report
-      working-directory: ./sitecrypto
       run: |
         coverage report  # Show a summary report in the console
