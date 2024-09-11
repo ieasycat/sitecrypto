@@ -1,4 +1,4 @@
-name: Django CI with Coverage
+name: Django CI/CD Pipeline
 
 on:
   push:
@@ -56,3 +56,39 @@ jobs:
     - name: Generate coverage report
       run: |
         coverage report  # Show a summary report in the console
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test  # It starts only after successful execution of the tests
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build 
+          docker push 
+
+      - name: Deploy to AWS
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOST: ${{ secrets.HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@$HOST << EOF
+            cd /home/ec2-user/sitecrypto
+            docker-compose pull
+            docker-compose up -d --build
+          EOF
