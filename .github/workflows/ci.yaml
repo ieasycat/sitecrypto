@@ -90,7 +90,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker-compose build 
+          docker-compose build --no-cache
           docker-compose push 
 
       - name: Deploy to AWS
