@@ -104,6 +104,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@$HOST << EOF
             cd /home/ec2-user/sitecrypto
             docker-compose pull
+            docker image prune -f
+            docker-compose down
             docker-compose build --no-cache
             docker-compose up -d
           EOF
