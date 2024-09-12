@@ -106,6 +106,5 @@ jobs:
             docker-compose down
             docker-compose pull
             docker image prune -f
-#            docker-compose build --no-cache
             docker-compose up -d --build
           EOF
