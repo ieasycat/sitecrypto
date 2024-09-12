@@ -29,9 +29,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = ['ec2-16-170-215-23.eu-north-1.compute.amazonaws.com', '16.170.215.23']
+ALLOWED_HOSTS = ['ec2-16-170-215-23.eu-north-1.compute.amazonaws.com', '16.170.215.23', '127.0.0.1']
 
-INTERNAL_IPS = ['ec2-16-170-215-23.eu-north-1.compute.amazonaws.com', '16.170.215.23']
+INTERNAL_IPS = ['ec2-16-170-215-23.eu-north-1.compute.amazonaws.com', '16.170.215.23', '127.0.0.1']
 
 
 # Application definition
