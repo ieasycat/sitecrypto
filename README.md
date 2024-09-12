@@ -1,5 +1,3 @@
-[![Django CI/CD Pipeline](https://github.com/ieasycat/sitecrypto/actions/workflows/ci.yaml/badge.svg?event=push)](https://github.com/ieasycat/sitecrypto/actions/workflows/ci.yaml)
-
 # SiteCrypto
 
 SiteCrypto is a web application that provides information about some of the most famous cryptocurrencies, such as USDT, 
@@ -67,36 +65,35 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-### 4. Apply Migrations, Initialize Data and Create a Collection of Statistical Files
+### 4. Run the Application and Initialize Data
 
-Apply migrations to set up the database:
+To set up the database, collect static files, and start the application, run:
 
 ```bash
-python manage.py makemigrations
-python manage.py migrate
+./boot.sh
 ```
 
+This script will:
+
+	•	Apply migrations
+	•	Collect static files
+	•	Start the Gunicorn server
+
 Populate the database with initial data using the script:
+
+For local environment:
 
 ```bash
 ./run_scripts.sh
 ```
 
-Collect all the static in a single folder:
+For Docker Compose:
 
 ```bash
-python manage.py collectstatic --no-input
+docker-compose exec web ./run_scripts.sh
 ```
 
-### 5. Run the Application
-
-Run the application locally:
-
-```bash
-python manage.py runserver
-```
-
-### 6. Run with Docker Compose
+### 5. Run with Docker Compose
 
 If you prefer using Docker, start the services with:
 
@@ -110,7 +107,7 @@ This will start:
 - **PostgreSQL** database
 - **Nginx** for handling static files and proxying requests to port 80
 
-### 7. Create a Superuser
+### 6. Create a Superuser
 
 To access the admin panel, create a superuser:
 
@@ -126,7 +123,7 @@ For Docker Compose:
 docker-compose exec web python manage.py createsuperuser
 ```
 
-### 8. Run Tests
+### 7. Run Tests
 
 To ensure everything is working correctly, run the tests with coverage:
 
